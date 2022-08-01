@@ -1,4 +1,6 @@
 function prompt_right_dmr
+    set -g last_status $status
+
     if test $skip_right_prompt -eq 1
         return
     end
@@ -7,10 +9,6 @@ function prompt_right_dmr
 end
 
 function prompt_right_dmr_unconditional
-    # if test $skip_right_prompt -eq 1
-    #     return
-    # end
-
     set -g __fish_git_prompt_showdirtystate 1
     set -g __fish_git_prompt_showuntrackedfiles 1
     set -g __fish_git_prompt_showupstream informative
@@ -44,8 +42,12 @@ function prompt_right_dmr_unconditional
     set -q VIRTUAL_ENV
     and set -l venv (string replace -r '.*/' '' -- "$VIRTUAL_ENV")
 
+    # Prompt status only if it's not 0
+    set -l prompt_status
+    test $last_status -ne 0; and set prompt_status (set_color $fish_color_error)"[$last_status]$normal"
+
     set_color normal
-    string join " " -- $venv $duration $vcs $wd $d
+    string join " " -- $prompt_status $venv $duration $vcs $wd $d
 end
 
 function clear_right_prompt
@@ -54,11 +56,6 @@ function clear_right_prompt
         commandline -f repaint
     end
 end
-
-# function clear_right_prompt --on-event fish_preexec
-#     set -g skip_right_prompt 1
-#     commandline -f repaint
-# end
 
 function reset_right_prompt --on-event fish_postexec
     set -g skip_right_prompt 0
