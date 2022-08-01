@@ -1,0 +1,3 @@
+home: "{{ ansible_user_dir }}"
+
+fish_cfg_dir: "{{ home }}/.config/fish"

@@ -1,0 +1,20 @@
+- name: fish
+  package:
+    name:
+      - fish
+    state: present
+  become: yes
+
+- name: fish cfg
+  copy:
+    src: config.fish
+    dest: "{{ fish_cfg_dir }}/config.fish"
+
+- name: fish funs
+  copy:
+    src: "{{ item }}"
+    dest: "{{ fish_cfg_dir }}/functions/{{ item }}"
+  loop:
+    - text_to_color.fish
+    - prompt_dmr.fish
+    - prompt_right_dmr.fish
