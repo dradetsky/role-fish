@@ -9,4 +9,6 @@ if status is-interactive
 
     alias fish_prompt='prompt_dmr'
     alias fish_right_prompt='prompt_right_dmr'
+
+    fish_add_path ~/bin
 end
