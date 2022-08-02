@@ -5,6 +5,14 @@
     state: present
   become: yes
 
+- name: fish dirs
+  file:
+    path: "{{ item }}"
+    state: directory
+  loop:
+    - "{{ fish_cfg_dir }}"
+    - "{{ fish_cfg_dir }}/functions"
+
 - name: fish cfg
   copy:
     src: config.fish
