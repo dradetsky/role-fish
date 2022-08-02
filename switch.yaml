@@ -1,0 +1,7 @@
+- name: switch to fish book
+  hosts: localhost
+  tasks:
+    - name: switch
+      user:
+        name: "{{ ansible_user_id }}"
+        shell: /bin/fish
