@@ -24,18 +24,3 @@ function hash_to_color
     set -l col (string replace 0x '' $col | string pad -c 0 -w 2 | string join "")
     echo -n -s $col
 end
-
-function text_to_hash_0
-    set -l shas (echo $argv | cksum | string split -f1 ' ' | math --base=hex | string sub -s 3 -e 8)
-    echo $shas
-end
-
-function text_to_color_2
-    set -l hash (text_to_hash_2 $argv)
-    hash_to_color $hash
-end
-
-function text_to_hash_2
-    set -l shas (echo $argv | cksum -a sha512 | string split -f4 ' ' | string sub -e 6)
-    echo $shas
-end

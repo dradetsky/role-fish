@@ -11,7 +11,7 @@ function prompt_dmr
     set -l delim_inner '$ '
     fish_is_root_user; and set delim_inner '# '
 
-    set -l delim "$delimcolor$delim_inner$normal"
+    set -l delim "$delimcolor""$delim_inner""$normal"
 
     set -l prompt_from_right
     if test $skip_right_prompt -eq 1
