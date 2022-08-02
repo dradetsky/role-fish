@@ -1,6 +1,7 @@
 if status is-interactive
     fish_config theme choose 'Tomorrow Night Bright'
 
+    set -U fish_greeting
     set -g skip_right_prompt 0
 
     bind \n 'clear_right_prompt ; commandline -f execute'
