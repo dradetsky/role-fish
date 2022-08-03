@@ -1,10 +1,16 @@
 function text_to_hash_1
+    # NOTE: we use blake2b (a cryptographic hash) rather than just a simple cksum despite this not
+    # being a use-case requiring cryptographic hash guarantees since
+    #
+    # - it seems to spread the values out better (so more likely for colors to be distinct), and
+    # - blake2b appears to only be a few ns slower than plain cksum anyway
     set -l shas (echo $argv | cksum -a blake2b | string split -f4 ' ' | string sub -e 6)
     echo $shas
 end
 
 alias text_to_hash='text_to_hash_1'
 
+# based on the text color hash block from disco.fish
 function text_to_color
     set -l hash (text_to_hash $argv)
     hash_to_color $hash
