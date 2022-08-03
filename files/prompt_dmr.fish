@@ -8,10 +8,10 @@ function prompt_dmr
     set -l normal (set_color normal)
     set -l delimcolor (set_color $fish_color_host_id)
 
-    set -l delim_inner '$ '
-    fish_is_root_user; and set delim_inner '# '
+    set -l delim '$ '
+    fish_is_root_user; and set delim '# '
 
-    set -l delim "$delimcolor""$delim_inner""$normal"
+    set -l prompt_delim "$delimcolor""$delim""$normal"
 
     set -l prompt_from_right
     if test $skip_right_prompt -eq 1
@@ -19,5 +19,5 @@ function prompt_dmr
         set prompt_from_right (prompt_right_dmr_unconditional)' '
     end
 
-    echo -n -s $prompt_from_right $delim
+    echo -n -s $prompt_from_right $prompt_delim
 end
