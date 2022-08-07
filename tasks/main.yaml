@@ -26,3 +26,10 @@
     - text_to_color.fish
     - prompt_dmr.fish
     - prompt_right_dmr.fish
+
+- name: fish complete
+  copy:
+    src: "completions/{{ item }}"
+    dest: "{{ fish_cfg_dir }}/completions/{{ item }}"
+  loop:
+    - screen.fish
