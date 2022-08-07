@@ -11,4 +11,6 @@ if status is-interactive
     alias fish_right_prompt='prompt_right_dmr'
 
     fish_add_path ~/bin
+    fish_add_path ~/.emacs.d/bin
+    fish_add_path ~/.npm/bin
 end
