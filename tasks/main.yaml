@@ -27,6 +27,20 @@
     - prompt_dmr.fish
     - prompt_right_dmr.fish
 
+- name: more fish funs
+  copy:
+    src: "functions/{{ item }}"
+    dest: "{{ fish_cfg_dir }}/functions/{{ item }}"
+  loop:
+    - fish_title.fish
+
+- name: more fish cfg
+  copy:
+    src: "conf.d/{{ item }}"
+    dest: "{{ fish_cfg_dir }}/conf.d/{{ item }}"
+  loop:
+    - env_unconditional.fish
+
 - name: fish complete
   copy:
     src: "completions/{{ item }}"
